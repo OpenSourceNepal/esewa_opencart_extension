@@ -16,9 +16,9 @@
             <input value="<?php echo $merchantcode; ?>" name="scd" type="hidden">
             <input value="<?php echo  floatval($totalamount); ?>" name="tAmt" type="hidden">
             <input value="<?php echo $productid; ?>" name="pid" type="hidden">
-           
-            <input value="http://store.epicmountainbike.com/success,html?q=su" type="hidden" name="su">
-            <input value="http://store.epicmountainbike.com/failure.html?q=fu" type="hidden" name="fu">  
+          
+            <input value="http://store.epicmountainbike.com/index.php?route=payment/esewa/confirm" type="hidden" name="su">
+            <input value="http://store.epicmountainbike.com/index.php?route=checkout/checkout" type="hidden" name="fu">  
     		<input type="submit" value="<?php echo $button_confirm; ?>" id="button-confirm" class="button" />
     </form>
   </div>

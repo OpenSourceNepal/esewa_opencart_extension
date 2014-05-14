@@ -60,13 +60,31 @@ class ControllerPaymentEsewa extends Controller {
 	}
 
 	public function confirm() {
-		
+		if(isset($this->session->data['order_id'])){
+			
 		$this->language->load('payment/esewa');		
-		$this->load->model('checkout/order');		
+		$this->load->model('checkout/order');
+		
+	
+			
 		$comment  = $this->language->get('text_instruction') . "\n\n";
-		$comment .= $this->config->get('esewa_transfer_' . $this->config->get('config_language_id')) . "\n\n";
-		$comment .= $this->language->get('text_payment');		
+		
+
+		$comment .= $this->language->get('text_payment');
+				$comment .= $this->config->get('esewa_transfer_' . $this->config->get('config_language_id')) . "\n\n";
+			if(isset($_GET['refId'])){
+			
+			$comment .= "---------------------- \n\n\n E-sewa reference Id : ".$this->data['reffId'] = $_GET['refId'];
+			
+		}
 		$this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('esewa_order_status_id'), $comment, true);
+	
+		$this->redirect($this->url->link('checkout/success', '', 'SSL'));
+			}	
+			else{
+				$this->redirect($this->url->link('error/index'));
+				}
+		
 	}
 }
 ?>
